@@ -1,5 +1,6 @@
+/* font includes */
 @import url("https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap");
-
+/* general styles */
 * {
   box-sizing: border-box;
 }
@@ -8,6 +9,14 @@ body {
   padding: 0;
   font-family: "Lato", sans-serif;
 }
+/* component */
+.btn {
+  cursor: pointer;
+  border: none;
+  font-size: 1.125em;
+  padding: 0.2em 1em;
+}
+/* header */
 .header {
   border: 2px solid red;
   height: 5vh;
@@ -24,16 +33,9 @@ body {
   margin-left: 1em;
   width: 150px;
 }
-.navigation .btn-container .btn {
-  cursor: pointer;
-  border: none;
-  font-size: 1.125em;
-  padding: 0.2em 1em;
-  width: 50px;
-}
+/* main */
 .main {
   height: calc(95vh);
-  overflow: hidden;
 }
 /* container */
 .container-component {
@@ -46,4 +48,7 @@ body {
   width: 100%;
   height: 100%;
   border: 1px solid darkblue;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
