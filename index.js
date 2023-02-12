@@ -4,7 +4,8 @@ const removeBtn = document.querySelector(".minus")
 
 function showRightImage(numberOfRightSlide) {
   const images = document.querySelectorAll(".image-container > img")
-  console.log(images)
+  const label = document.querySelector("#label")
+  label.textContent = numberOfRightSlide
   images.forEach((img) => img.classList.remove("active"))
   images[numberOfRightSlide - 1].classList.add("active")
 }
@@ -17,7 +18,6 @@ function selectActiveImage() {
   // get last image
   const active = containerImages.lastElementChild
   active.classList.add("active")
-  console.log(active)
 }
 
 function changeInputSlider(number) {
@@ -26,7 +26,7 @@ function changeInputSlider(number) {
   const inputRange = document.getElementById("range")
   const label = document.getElementById("label")
   inputRange.max = number
-  //inputRange.min = 1
+  inputRange.value = number
   label.textContent = number
 
   console.log(inputRange)
@@ -39,33 +39,29 @@ function changeInputSlider(number) {
 function countImages() {
   const images = document.querySelectorAll(".image-container > img")
   const numOfImages = images.length
-  //console.log(numOfImages)
+
   changeInputSlider(numOfImages)
 }
 
 function loadImages() {
   const fileInput = document.getElementById("fileInput")
-  //const inputRange = document.getElementById("range")
-  //console.log(fileInput.files[0])
 
   fileInput.addEventListener("change", (event) => {
     // create a new object FileReader for reading images with FRApi
     const fileReader = new FileReader()
     fileReader.readAsDataURL(fileInput.files[0])
 
-    //console.log(fileReader.result)
-
     fileReader.addEventListener("load", () => {
+      const inputRange = document.querySelector(".input-range")
       const imageContainer = document.querySelector(".image-container")
+      inputRange.classList.remove("d-none")
+      imageContainer.classList.remove("d-none")
+
       const url = fileReader.result
       console.log(url)
       const image = document.createElement("img")
       image.src = url
-      // console.log(image)
-      // console.log(imageContainer)
       imageContainer.appendChild(image)
-      //imageContainer.appendChild(image)
-
       countImages()
     })
   })
@@ -76,14 +72,13 @@ function addComponent() {
   const el = document.createElement("div")
   el.classList.add("component")
   el.innerHTML = `
-    <div class="input-range">
+    <div class="input-range d-none">
       <label for="range" id="label">1</label>
-      <input type="range" id="range" class="range" min="1" max="100" />
+      <input type="range" id="range" class="range" min="1" max="1" value="1" />
     </div>  
-    <div class="image-container"></div>
+    <div class="image-container d-none"></div>
     <div class="upload">
       <input type="file" id="fileInput" />
-      <button class="btn">Upload</button>
     </div>
   `
   container.appendChild(el)
