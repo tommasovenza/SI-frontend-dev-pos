@@ -1,14 +1,16 @@
 // things I need Initially
 const addBtn = document.querySelector(".plus")
 const removeBtn = document.querySelector(".minus")
+const switchBtn = document.querySelector(".switch")
 let counter = 0
 
+// Component Class
 class Component {
   constructor(id) {
     this.id = id
   }
 }
-
+// UI Class
 class UI {
   createComponent(item) {
     const container = document.querySelector(".container-component")
@@ -56,7 +58,7 @@ class UI {
     const component = document.getElementById(numberID)
     const images = component.querySelectorAll(".image-container > img")
     const numOfImages = images.length
-    //console.log(numOfImages)
+
     this.changeInputSlider(numberID, numOfImages)
   }
   changeInputSlider(numberID, imagesNumber) {
@@ -94,20 +96,16 @@ class UI {
     images[numberOfRightSlide - 1].classList.add("active")
   }
 }
-
+// functions
 function addComponent() {
   counter++
-
-  // Instantiante a New Component
+  // Instantiate a New Component
   const component = new Component(counter)
   // Instantiate a New UI Object
   const ui = new UI()
-  // console.log(component)
-  // console.log(ui)
 
+  // Rendering Component
   ui.createComponent(component)
-
-  // loadImages()
 }
 function removeComponent() {
   counter--
@@ -115,6 +113,12 @@ function removeComponent() {
   const last = container.lastElementChild
   last.remove()
 }
+function changeLayout() {
+  const container = document.querySelector(".container-component")
+  container.classList.toggle("change-layout")
+}
+
 // event listeners
 addBtn.addEventListener("click", addComponent)
 removeBtn.addEventListener("click", removeComponent)
+switchBtn.addEventListener("click", changeLayout)
