@@ -1,7 +1,8 @@
 /* Font Includes */
 @import url("https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap");
-
-/* CSS Variables */
+/* 
+  CSS Variables 
+*/
 :root {
   --lightmode-backg-color: #ddd;
   --lightmode-border-color: #eee;
@@ -11,7 +12,9 @@
   --darkmode-shadow-color: rgba(255, 255, 255, 0.35);
   --white: #fff;
 }
-/* General Styles & modular classes */
+/* 
+  General Styles & Modular Classes 
+*/
 * {
   box-sizing: border-box;
 }
@@ -81,7 +84,7 @@ body.dark-mode {
 body.dark-mode .component {
   border: 0.2px solid var(--darkmode-border-color);
 }
-/* Slideshow styles */
+/* Slideshow Styles */
 .image-container {
   width: 70%;
   height: 70%;
@@ -118,7 +121,7 @@ body.dark-mode input.file-input,
 body.dark-mode .input-range > label {
   color: white;
 }
-/* media queries */
+/* Media Queries */
 @media (max-width: 561px) {
   .btn,
   .candidate-name {

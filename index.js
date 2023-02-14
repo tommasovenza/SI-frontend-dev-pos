@@ -114,10 +114,12 @@ function removeComponent() {
   const last = container.lastElementChild
   last.remove()
 }
+// Change Layout with Grid
 function changeLayout() {
   const container = document.querySelector(".container-component")
   container.classList.toggle("change-layout")
 }
+// Switch Light-Dark Mode
 function changeMode() {
   const body = document.body
   if (body.classList.contains("dark-mode")) {
