@@ -1,6 +1,17 @@
-/* font includes */
+/* Font Includes */
 @import url("https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap");
-/* general styles */
+
+/* CSS Variables */
+:root {
+  --lightmode-backg-color: #ddd;
+  --lightmode-border-color: #eee;
+  --lightmode-shadow-color: rgba(0, 0, 0, 0.4);
+  --darkmode-backg-color: #333;
+  --darkmode-border-color: #3de99e;
+  --darkmode-shadow-color: rgba(255, 255, 255, 0.35);
+  --white: #fff;
+}
+/* General Styles & modular classes */
 * {
   box-sizing: border-box;
 }
@@ -8,13 +19,19 @@ body {
   margin: 0;
   padding: 0;
   font-family: "Lato", sans-serif;
-  background-color: #ddd;
+  background-color: var(--lightmode-backg-color);
+}
+body.dark-mode {
+  background-color: var(--darkmode-backg-color);
 }
 .btn {
   cursor: pointer;
   border: none;
-  font-size: 1.125em;
+  font-size: 1.125rem;
   padding: 0.2em 1em;
+}
+.btn.dark-mode {
+  margin-left: 1rem;
 }
 .d-none {
   display: none;
@@ -24,18 +41,17 @@ body {
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   grid-auto-rows: 200px;
   gap: 1em;
-  /* flex-direction: column; */
 }
-/* header */
+/* Header Styles */
 .header {
   height: 5vh;
   display: flex;
   align-items: center;
   padding: 1em;
-  background-color: #fff;
+  background-color: var(--white);
 }
 .navigation {
-  width: 200px;
+  width: 300px;
   display: flex;
   align-items: center;
 }
@@ -43,11 +59,10 @@ body {
   margin-left: 1em;
   width: 150px;
 }
-/* main */
+/* Main & Container Styles */
 .main {
   height: calc(95vh);
 }
-/* container */
 .container-component {
   width: 100%;
   height: 100%;
@@ -57,29 +72,56 @@ body {
 .component {
   width: 100%;
   height: 100%;
-  border: 1px solid #eee;
+  border: 1px solid var(--lightmode-border-color);
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
-/* Slideshow */
+body.dark-mode .component {
+  border: 0.2px solid var(--darkmode-border-color);
+}
+/* Slideshow styles */
 .image-container {
   width: 70%;
   height: 70%;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 4px 20px var(--lightmode-shadow-color);
 }
-/* Slideshow images styles */
 .image-container img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   object-position: center;
   display: none;
+  cursor: pointer;
 }
 .image-container img.active {
   display: block;
 }
+.image-container img.zoom {
+  transform: scale(1.5);
+  transition: 0.4s ease;
+}
+body.dark-mode .image-container {
+  box-shadow: 0 4px 20px var(--darkmode-shadow-color);
+}
+/* Input type range styles */
 input[type="range"] {
   cursor: pointer;
+  width: 100%;
+  margin-bottom: 1rem;
+}
+input.file-input {
+  margin-top: 1em;
+}
+body.dark-mode input.file-input,
+body.dark-mode .input-range > label {
+  color: white;
+}
+/* media queries */
+@media (max-width: 561px) {
+  .btn,
+  .candidate-name {
+    font-size: 0.7rem;
+  }
 }

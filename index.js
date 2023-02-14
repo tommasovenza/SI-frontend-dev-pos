@@ -2,6 +2,7 @@
 const addBtn = document.querySelector(".plus")
 const removeBtn = document.querySelector(".minus")
 const switchBtn = document.querySelector(".switch")
+const darkmode = document.querySelector(".dark-mode")
 let counter = 0
 
 // Component Class
@@ -69,7 +70,7 @@ class UI {
     const label = component.querySelector("#label")
     inputRange.max = imagesNumber
     inputRange.value = imagesNumber
-    label.textContent = imagesNumber
+    label.textContent = `Uploaded ${imagesNumber} images`
     console.log(inputRange)
 
     inputRange.addEventListener("click", (e) => {
@@ -91,7 +92,7 @@ class UI {
     const component = document.getElementById(numberID)
     const images = component.querySelectorAll(".image-container > img")
     const label = component.querySelector("#label")
-    label.textContent = numberOfRightSlide
+    label.textContent = `Selected ${numberOfRightSlide}/${images.length} slide`
     images.forEach((img) => img.classList.remove("active"))
     images[numberOfRightSlide - 1].classList.add("active")
   }
@@ -117,8 +118,23 @@ function changeLayout() {
   const container = document.querySelector(".container-component")
   container.classList.toggle("change-layout")
 }
+function changeMode() {
+  const body = document.body
+  if (body.classList.contains("dark-mode")) {
+    body.classList.remove("dark-mode")
+  } else {
+    body.classList.add("dark-mode")
+  }
+}
 
 // event listeners
 addBtn.addEventListener("click", addComponent)
 removeBtn.addEventListener("click", removeComponent)
 switchBtn.addEventListener("click", changeLayout)
+darkmode.addEventListener("click", changeMode)
+// zoom
+document.addEventListener("click", (e) => {
+  if (e.target.classList.contains("active")) {
+    e.target.classList.toggle("zoom")
+  }
+})
